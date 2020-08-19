@@ -1,2 +1,2 @@
-# cookieclicker_Selenium-
-Use Selenium to play cookieclicker
+# cookieclicker_Selenium
+Use Selenium to auto buy items in cookieclicker game
