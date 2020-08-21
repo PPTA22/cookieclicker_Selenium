@@ -8,8 +8,14 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+MOUSE_CLICK_COOKIE_TIMES = 50
+MOUSE_CLICK_GAP_IN_SECOND = 4
+
 
 def click_golden_cookie():
+    #can also in the main.js of the webpage
+    #find the `me.time++` change to `me.time = me.time+500`
+    #so the golden cookie will always spawn
     try:
         driver.find_element_by_class_name('shimmer').click()
         print('[o] clicked Golden cookie')
@@ -57,16 +63,19 @@ while True:
             print('clicked : ' + i.find_element_by_class_name('title').text +
                   '[' + i.find_element_by_class_name('title.owned').text + ']')
         # sleep(10)
-        for i in range(70):
+        for i in range(MOUSE_CLICK_COOKIE_TIMES):
             driver.find_element(By.ID, 'bigCookie').click()
-        sleep(3)
+        sleep(MOUSE_CLICK_GAP_IN_SECOND)
     except ElementClickInterceptedException as e:
-        print(e)
+        #print(e)
+        print('[!] the big cookie may be overlaped by golden cookie')
     except Exception as e:
         print(e)
         # export to save bt
         # if (driver.)
-        driver.find_element_by_id('prefsButton').click()
+        t=driver.find_element_by_id('prefsButton')
+        if 'selectec' not in t.get_attribute('class'):
+            driver.find_element_by_id('prefsButton').click()
         print('clicked Options bt')
 
         driver.find_element_by_xpath('/html/body/div[1]/div[2]/div[18]/div[2]/div[4]/div[3]/div[3]/a[1]').click()
