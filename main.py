@@ -8,7 +8,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-MOUSE_CLICK_COOKIE_TIMES = 50
+MOUSE_CLICK_COOKIE_TIMES = 40
 MOUSE_CLICK_GAP_IN_SECOND = 4
 
 
@@ -74,7 +74,7 @@ while True:
         # export to save bt
         # if (driver.)
         t=driver.find_element_by_id('prefsButton')
-        if 'selectec' not in t.get_attribute('class'):
+        if 'selected' not in t.get_attribute('class'):
             driver.find_element_by_id('prefsButton').click()
         print('clicked Options bt')
 
