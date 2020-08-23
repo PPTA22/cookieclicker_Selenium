@@ -35,10 +35,16 @@ except:
 
 
 print()
-st=time.time()
-for i in range(200):
-    driver.find_element(By.ID, 'bigCookie').click()
-print('sec: ' + str(int(time.time()-st)))
+
+driver.find_element_by_id('prefsButton').click()
+print('export save')
+
+# export to save bt
+driver.find_element_by_xpath('/html/body/div[1]/div[2]/div[18]/div[2]/div[4]/div[3]/div[3]/a[1]').click()
+
+#saving record
+t1=driver.find_element_by_xpath('/html/body/div/div[2]/div[11]/div/div[1]/div[2]/textarea').text
+print(t1)
 print()
 # search = driver.find_element_by_name("q")   #this is to find the search tag
 # search.send_keys("test", Keys.ARROW_DOWN)  #this is the text wnat to search
