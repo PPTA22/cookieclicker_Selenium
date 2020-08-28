@@ -14,37 +14,37 @@ PATH = 'C:/Program Files (x86)/WebDriver/msedgedriver.exe'
 
 driver = webdriver.Edge(PATH)
 print(driver.title)
+url = 'https://www.cathaypacificcargo.com/ManageYourShipment/TrackYourShipment/tabid/108/SingleAWBNo/160-18927112/language/en-US/Default.aspx'
 
-driver.get("https://orteil.dashnet.org/cookieclicker/")
+driver.get(url)
+# driver.get("https://orteil.dashnet.org/cookieclicker/")
 print(driver.title)
 
 try:
-    main = WebDriverWait(driver,15).until(
+    WebDriverWait(driver,15).until(
         # EC.presence_of_all_elements_located((By.ID, 'prefsButton'))
-        EC.presence_of_all_elements_located((By.ID, 'bigCookie'))
+        EC.presence_of_element_located((By.ID, 'tntTab2'))
     )
-    sleep(5)
 
     print('[o] hey u found it')
     # print(driver.page_source)
 
-except:
+except Exception as e:
     print('[X] err')
+    print(e)
     sleep(5)
     driver.quit()
+driver.find_element_by_class_name('tntTabBtn2.tntTabBtn').click()
+booking_status_tab = driver.find_element_by_id('tntTab2')
+css_class = booking_status_tab.find_elements_by_class_name('tntField.tntW150')
+for c in css_class:
+    print(c.text)
+    print()
+
 
 
 print()
 
-driver.find_element_by_id('prefsButton').click()
-print('export save')
-
-# export to save bt
-driver.find_element_by_xpath('/html/body/div[1]/div[2]/div[18]/div[2]/div[4]/div[3]/div[3]/a[1]').click()
-
-#saving record
-t1=driver.find_element_by_xpath('/html/body/div/div[2]/div[11]/div/div[1]/div[2]/textarea').text
-print(t1)
 print()
 # search = driver.find_element_by_name("q")   #this is to find the search tag
 # search.send_keys("test", Keys.ARROW_DOWN)  #this is the text wnat to search
